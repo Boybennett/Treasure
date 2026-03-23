@@ -1,0 +1,108 @@
+/* --- Core Responsiveness & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box; /* Crucial for padding */
+}
+
+body {
+    background-color: #fff5f5;
+    color: #551a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Prevents edge-touching on mobile */
+    font-family: 'Georgia', serif;
+    text-align: center;
+    overflow-x: hidden; /* Prevents animation horizontal scroll */
+}
+
+.container {
+    width: 100%;
+    max-width: 650px; /* Limits width on large monitors */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Interactive Elements --- */
+#heart-container {
+    padding: 30px;
+    cursor: pointer;
+}
+
+#heart {
+    font-size: 60px; /* Base size */
+    transition: transform 0.2s ease;
+    animation: simplePulse 2s infinite; /* Gentle subtle pulse before click */
+}
+
+#heart:hover {
+    transform: scale(1.1);
+}
+
+#title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* --- Hidden Message & Reveal Effects --- */
+.hidden {
+    display: none !important;
+}
+
+#message {
+    font-size: 1.25rem; /* Base phone reading size */
+    line-height: 1.7;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Class added by JS to trigger animation */
+#message.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Custom Floating Hearts Effect --- */
+.floating-heart {
+    position: fixed;
+    bottom: -10vh;
+    font-size: 24px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 999;
+    animation: moveUp linear forwards;
+}
+
+/* --- Media Queries (Desktop Adjustments) --- */
+@media (min-width: 768px) {
+    #message {
+        font-size: 1.8rem; /* Grand and elegant on large screens */
+    }
+    #heart {
+        font-size: 100px;
+    }
+    #title {
+        font-size: 2rem;
+    }
+}
+
+/* --- Animations --- */
+@keyframes simplePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes moveUp {
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
